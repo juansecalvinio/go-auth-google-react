@@ -5,8 +5,10 @@ interface Props {
   onClick: () => void;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const ProfileCard = ({ name, email, picture, onClick }: Props) => {
-  const avatarProxyUrl = `http://localhost:8080/avatar?url=${encodeURIComponent(
+  const avatarProxyUrl = `${API_BASE_URL}/avatar?url=${encodeURIComponent(
     picture
   )}`;
 

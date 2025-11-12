@@ -1,8 +1,10 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const HomePage = () => {
   const handleLogin = () => {
-    const redirectURL = encodeURIComponent("http://localhost:5173/profile");
+    const redirectURL = encodeURIComponent(`${window.location.origin}/profile`);
     // El frontend envía el parámetro 'state' en la URL del backend
-    window.location.href = `http://localhost:8080/auth/google?provider=google&state=${redirectURL}`;
+    window.location.href = `${API_BASE_URL}/auth/google?provider=google&state=${redirectURL}`;
   };
 
   return (

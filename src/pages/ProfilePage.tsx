@@ -9,6 +9,8 @@ interface User {
   picture: string;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const ProfilePage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
@@ -18,7 +20,7 @@ export const ProfilePage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/user", {
+        const response = await fetch(`${API_BASE_URL}/user`, {
           credentials: "include",
         });
 
@@ -42,7 +44,7 @@ export const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:8080/logout/google", {
+      const response = await fetch(`${API_BASE_URL}/logout/google`, {
         credentials: "include",
       });
 
@@ -86,60 +88,6 @@ export const ProfilePage = () => {
           picture={user.picture}
         />
       </div>
-
-      {/* <div className="relative z-10 flex h-full flex-col items-center justify-center px-4">
-        <div className="card bg-base-100 max-w-96 shadow-sm">
-          <figure className="px-10 pt-10">
-            <div className="avatar">
-              <div className="rounded-full w-24">
-                <img src={user.picture} alt={user.name} />
-              </div>
-            </div>
-          </figure>
-
-          <div className="card-body">
-            <div className="flex flex-col justify-between">
-              <h2 className="text-2xl font-bold">{user.name}</h2>
-              <span className="text-lg">{user.email}</span>
-            </div>
-            <div className="mt-6">
-              <button
-                className="btn btn-secondary btn-block"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-      {/* <div className="max-w-md">
-        <div className="card bg-base-100 max-w-96 shadow-sm">
-          <figure className="px-10 pt-10">
-            <div className="avatar">
-              <div className="rounded-full w-24">
-                <img src={user.picture} alt={user.name} />
-              </div>
-            </div>
-          </figure>
-
-          <div className="card-body">
-            <div className="flex flex-col justify-between">
-              <h2 className="text-2xl font-bold">{user.name}</h2>
-              <span className="text-lg">{user.email}</span>
-            </div>
-            <div className="mt-6">
-              <button
-                className="btn btn-secondary btn-block"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
       <footer className="fixed bottom-0 left-0 w-full h-12 bg-slate-900/80 backdrop-blur-sm text-slate-400 flex items-center justify-center text-sm z-30">
         <div className="px-4">
